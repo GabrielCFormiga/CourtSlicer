@@ -6,14 +6,36 @@ Watch basketball footage, flag plays in real time, and automatically cut the vid
 
 - [ffmpeg](https://ffmpeg.org/) (includes ffprobe)
 - [python-vlc](https://pypi.org/project/python-vlc/) (for video playback and keypress handling)
+- [tkinter](https://docs.python.org/3/library/tkinter.html) (for the GUI window and keyboard input)
+
+## Installation
+
+### Build from source
+
+```sh
+git clone https://github.com/GabrielCFormiga/CourtSlicer.git
+cd CourtSlicer
+bash install.sh
+```
+
+The script checks system dependencies (Python ≥3.10, tkinter, ffmpeg), installs [uv](https://docs.astral.sh/uv/) if needed, and wires up the `court-slicer` entry point in `.venv/bin/`.
+
+Options:
+- `--yes` — non-interactive (auto-install uv)
+- `--no-uv` — force pip instead of uv
 
 ## Usage
 
 ```sh
-python court_slicer.py <input>
+source .venv/bin/activate
+court-slicer <video_file>
 ```
 
-- `input` — a video file
+Or without activating:
+
+```sh
+.venv/bin/court-slicer <video_file>
+```
 
 ### Controls
 

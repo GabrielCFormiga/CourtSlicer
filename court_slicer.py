@@ -82,20 +82,16 @@ class CourtSlicerApp(tk.Tk):
 
     def _embed_vlc(self):
         xid = self.canvas.winfo_id()
-        print(f"[debug] embedding into XID={xid}")
         self.player.set_xwindow(xid)
-        ret = self.player.play()
-        print(f"[debug] play() returned {ret}")
+        self.player.play()
         self.after(500, self._check_state)
         self.canvas.focus_set()
 
     def _check_state(self):
         state = self.player.get_state()
-        t = self.player.get_time()
-        print(f"[debug] state={state}  time={t}ms")
         if state == vlc.State.Error:
             mrl = self.player.get_media().get_mrl() if self.player.get_media() else "?"
-            print(f"[debug] VLC error on media: {mrl}")
+            print(f"Error: VLC could not open media: {mrl}")
 
     def _bind_keys(self):
         self.bind("<KeyPress-a>", lambda e: self._on_rewind())
